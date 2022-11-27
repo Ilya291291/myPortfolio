@@ -58,10 +58,10 @@ header {
 }
 
 .sep_color-orange {
-    background: linear-gradient(45deg, #FF9966, #FF5E62);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+    background: linear-gradient(45deg, #FF9966, #FF5E62) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
 }
 .sep_color-orange-header {
     background: linear-gradient(45deg, #FF9966, #FF5E62);
@@ -186,6 +186,26 @@ header {
     border-radius: 7%;
     background-color: var(--color-grey-4);
     cursor: pointer;
+    /* transition: all 0.3s linear; */
+}
+.change-holder {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: 0;
+    background-color: var(--color-blue);
+    height: 100%;
+    width: 50%;
+    border-radius: 7%;
+    transition: all 0.3s linear;
+    display: block;
+    z-index: -20;
+}
+.switch.change-holder {
+    left: 0;
+}
+.button__sidebar-change-langs span {
+    color: var(--color-grey-2);
 }
 .button__sidebar-change i {
     color: var(--color-grey-2);
@@ -462,9 +482,9 @@ section {
     background-color: #454e56;
 } */
 .educ-info {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(1, 130px 1fr);
+    gap: 1rem;
 }
 
 .educ-item time {

@@ -1,3 +1,7 @@
+let holder1 = document.querySelector('.lng-cname')
+let holder2 = document.querySelector('.lng-cemail')
+let holder3 = document.querySelector('.lng-csubject')
+let holder4 = document.querySelector('.lng-cpholder')
 const langsArr = {
     'h': {
         'ru': `Давайте познакомимся. Меня зовут <span class="sep_color">Илья</span>`,
@@ -155,33 +159,121 @@ const langsArr = {
         'ru': `Четверг 13.10.2022`,
         'en': `Thursday 13.10.2022`
     },
-
+    'contacts': {
+        'ru': `Мои <span class="sep_color">контакты</span><span class="title-bg-text">Мои контакты</span>`,
+        'en': `My <span class="sep_color">contacts</span><span class="title-bg-text">My contacts</span>`
+    },
+    'ctxt': {
+        'ru': `Связаться со мной можно любым удобным для вас способом, через социальные сети или по телефону.`,
+        'en': `Feel free to contact me by phone number, email, or social networks`
+    },
+    'mob': {
+        'ru': `Мобильный номер`,
+        'en': `Mobile phone number`
+    },
+    'clngs': {
+        'ru': `Языки`,
+        'en': `Languages`
+    },
+    'clngstxt': {
+        'ru': `Английский, немецкий`,
+        'en': `English, German`
+    },
+    'cname': {
+        'ru': `${holder1.placeholder="Ваше имя"}${holder1.value = ''}`,
+        'en': `${holder1.placeholder="Your name"}${holder1.value = ''}`
+    },
+    'cemail': {
+        'ru': `${holder2.placeholder="Ваш E-Mail"}${holder2.value = ''}`,
+        'en': `${holder2.placeholder="Your E-mail"}${holder2.value = ''}`
+    },
+    'csubject': {
+        'ru': `${holder3.placeholder="Предмет обсуждения"}${holder3.value = ''}`,
+        'en': `${holder3.placeholder="Your subject"}${holder3.value = ''}`
+    },
+    'cpholder': {
+            'ru': `${holder4.placeholder="Ваше сообщение"}${holder4.value = ''}`,
+            'en': `${holder4.placeholder="Your message"}${holder4.value = ''}`
+    },
+    'ccv': {
+        'ru': `Скачать резюме`,
+        'en': `Download CV`
+    },
+    'homebtn': {
+        'ru': `Домой`,
+        'en': `Home`
+    },
+    'aboutbtn': {
+        'ru': `Обо мне`,
+        'en': `About me`
+    },
+    'portbtn': {
+        'ru': `Портфолио`,
+        'en': `Portfolio`
+    },
+    'blogbtn': {
+        'ru': `Блог`,
+        'en': `Blog`
+    },
+    'contactsbtn': {
+        'ru': `Контакты`,
+        'en': `Contacts`
+    },
 }
 
 const langs = document.querySelector('.button__sidebar-change-langs')
-const allLangs = ['en', 'ru'] //для проверки, чтобы хэш не был удален, или не доступен
+// const allLangs = ['en', 'ru'] //для проверки, чтобы хэш не был удален, или не доступен
+const languageSwitch = document.querySelector('.change-holder')
 langs.addEventListener('click', function(el){
     //перенаправляем на url с указания языка
     let lang = el.target.id
     location.href = window.location.pathname+'#'+lang
-    location.reload()
-})
-
-function changeLangs(){
-    let hash = window.location.hash //получаем хэштег страницы
-    hash = hash.slice(1)
-    if(!allLangs.includes(hash)){
-        location.href = window.location.pathname+'#en' //перебрсывать на страницу, если меняется хэш
-        location.reload()
-    }
-    langs.id = hash
+    languageSwitch.classList.toggle('switch')
     for(let key in langsArr){
-        document.querySelector('.lng-'+key).innerHTML = langsArr[key][hash]
-        if(key = key){ //если ключ одинаковый для нескольких предметов, то на каждый из них один и тот же ключ
-            document.querySelectorAll('.lng-'+key).forEach(function(el){
-                el.innerHTML = langsArr[key][hash]
-            })
+        if(lang === 'en'){
+            document.querySelector('.lng-'+key).innerHTML = langsArr[key].en
+            if(key === key){//если ключ одинаковый для нескольких предметов, то на каждый из них один и тот же ключ
+                document.querySelectorAll('.lng-'+key).forEach(function(el)
+                {el.innerHTML = langsArr[key].en})
+        }}else{
+            document.querySelector('.lng-'+key).innerHTML = langsArr[key].ru
+            if(key === key){//если ключ одинаковый для нескольких предметов, то на каждый из них один и тот же ключ
+                document.querySelectorAll('.lng-'+key).forEach(function(el)
+                {el.innerHTML = langsArr[key].ru})
+            }
         }
     }
-}
-changeLangs()
+    refreshColors()
+})
+
+// console.log(langsArr.h.en.includes('sep_color'))
+
+
+// location.reload()
+    // if(lang === 'en' === true){
+    //     document.querySelector('.lng-h').innerHTML = langsArr.h.en
+    // }else {
+    //     document.querySelector('.lng-h').innerHTML = langsArr.h.ru
+    // }
+
+// function changeLangs(){
+//     let hash = window.location.hash //получаем хэштег страницы
+//     hash = hash.slice(1)
+//     if(!allLangs.includes(hash)){
+//         location.href = window.location.pathname+'#en' //перебрсывать на страницу, если меняется хэш
+//         location.reload()
+//     }
+//     // console.log(hash)
+//     langs.id = hash
+//     for(let key in langsArr){
+//         // document.querySelector('.lng-'+key).innerHTML = langsArr[key][hash]
+        
+//         if(key = key){ //если ключ одинаковый для нескольких предметов, то на каждый из них один и тот же ключ
+//             document.querySelectorAll('.lng-'+key).forEach(function(el){
+//                 el.innerHTML = langsArr[key][hash]
+//             })
+//         }
+//     }
+// }
+// changeLangs()
+// console.log(holder1)
