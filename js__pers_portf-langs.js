@@ -1,11 +1,11 @@
-let holder1 = document.querySelector('.lng-cname')
-let holder2 = document.querySelector('.lng-cemail')
-let holder3 = document.querySelector('.lng-csubject')
-let holder4 = document.querySelector('.lng-cpholder')
+let holder1 = document.querySelector('.l-cname')
+let holder2 = document.querySelector('.l-cemail')
+let holder3 = document.querySelector('.l-csubject')
+let holder4 = document.querySelector('.l-cpholder')
 const langsArr = {
     'h': {
         'ru': `Давайте познакомимся. Меня зовут <span class="sep_color">Илья</span>`,
-        'en': `Hello, I'm <span class="sep_color">Ilya<span>`
+        'en': `Hello, I'm <span class="sep_color">Ilya.</span>`
     },
     'txt': {
         'ru': `Пара слов о себе. Я начинающий Frontend-разработчик. Люблю создавать красивые и функциональные сайты.`,
@@ -179,22 +179,6 @@ const langsArr = {
         'ru': `Английский, немецкий`,
         'en': `English, German`
     },
-    'cname': {
-        'ru': `${holder1.placeholder="Ваше имя"}${holder1.value = ''}`,
-        'en': `${holder1.placeholder="Your name"}${holder1.value = ''}`
-    },
-    'cemail': {
-        'ru': `${holder2.placeholder="Ваш E-Mail"}${holder2.value = ''}`,
-        'en': `${holder2.placeholder="Your E-mail"}${holder2.value = ''}`
-    },
-    'csubject': {
-        'ru': `${holder3.placeholder="Предмет обсуждения"}${holder3.value = ''}`,
-        'en': `${holder3.placeholder="Your subject"}${holder3.value = ''}`
-    },
-    'cpholder': {
-            'ru': `${holder4.placeholder="Ваше сообщение"}${holder4.value = ''}`,
-            'en': `${holder4.placeholder="Your message"}${holder4.value = ''}`
-    },
     'ccv': {
         'ru': `Скачать резюме`,
         'en': `Download CV`
@@ -218,12 +202,25 @@ const langsArr = {
     'contactsbtn': {
         'ru': `Контакты`,
         'en': `Contacts`
-    },
+    }
 }
-
 const langs = document.querySelector('.button__sidebar-change-langs')
 // const allLangs = ['en', 'ru'] //для проверки, чтобы хэш не был удален, или не доступен
 const languageSwitch = document.querySelector('.change-holder')
+let trueFalse = false
+function placeHolders(){
+    if(!trueFalse){
+        holder1.placeholder = 'Ваше имя'
+        holder2.placeholder = 'Ваш E-mail'
+        holder3.placeholder = 'Предмет обсуждения'
+        holder4.placeholder = 'Ваше сообщение'
+    }else if(trueFalse){
+        holder1.placeholder = 'Your Name'
+        holder2.placeholder = 'Your E-mail'
+        holder3.placeholder = 'Your subject'
+        holder4.placeholder = 'Your message'
+    }
+}
 langs.addEventListener('click', function(el){
     //перенаправляем на url с указания языка
     let lang = el.target.id
@@ -231,15 +228,20 @@ langs.addEventListener('click', function(el){
     languageSwitch.classList.toggle('switch')
     for(let key in langsArr){
         if(lang === 'en'){
-            document.querySelector('.lng-'+key).innerHTML = langsArr[key].en
+            placeHolders()
+            trueFalse = true
+            document.querySelectorAll('.lng-'+key).textContent = langsArr[key].en
             if(key === key){//если ключ одинаковый для нескольких предметов, то на каждый из них один и тот же ключ
                 document.querySelectorAll('.lng-'+key).forEach(function(el)
-                {el.innerHTML = langsArr[key].en})
+                {el.textContent = langsArr[key].en})
+
         }}else{
-            document.querySelector('.lng-'+key).innerHTML = langsArr[key].ru
+            placeHolders()
+            trueFalse = false
+            document.querySelectorAll('.lng-'+key).textContent = langsArr[key].ru
             if(key === key){//если ключ одинаковый для нескольких предметов, то на каждый из них один и тот же ключ
                 document.querySelectorAll('.lng-'+key).forEach(function(el)
-                {el.innerHTML = langsArr[key].ru})
+                {el.textContent = langsArr[key].ru})
             }
         }
     }
