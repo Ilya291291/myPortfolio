@@ -230,18 +230,18 @@ langs.addEventListener('click', function(el){
         if(lang === 'en'){
             placeHolders()
             trueFalse = true
-            document.querySelectorAll('.lng-'+key).textContent = langsArr[key].en
+            document.querySelectorAll('.lng-'+key).innerHTML = langsArr[key].en
             if(key === key){//если ключ одинаковый для нескольких предметов, то на каждый из них один и тот же ключ
                 document.querySelectorAll('.lng-'+key).forEach(function(el)
-                {el.textContent = langsArr[key].en})
+                {el.innerHTML = langsArr[key].en})
 
         }}else{
             placeHolders()
             trueFalse = false
-            document.querySelectorAll('.lng-'+key).textContent = langsArr[key].ru
+            document.querySelectorAll('.lng-'+key).innerHTML = langsArr[key].ru
             if(key === key){//если ключ одинаковый для нескольких предметов, то на каждый из них один и тот же ключ
                 document.querySelectorAll('.lng-'+key).forEach(function(el)
-                {el.textContent = langsArr[key].ru})
+                {el.innerHTML = langsArr[key].ru})
             }
         }
     }
