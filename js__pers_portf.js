@@ -7,6 +7,8 @@ const bodyCl = document.querySelector('.main__content')
 const toggler = document.querySelector('.button__sidebar-change')
 const text = document.querySelectorAll('.sep_color')
 const languageBtn = document.querySelector('.button__sidebar-change-langs')
+const certificates = document.querySelectorAll('.educ-info')
+const imgCert = document.querySelectorAll('.educ__cert-img')
 
 btnsSidebar.addEventListener('click', function(e) {
     const id = e.target.dataset.id;
@@ -60,6 +62,28 @@ function refreshColors(){
     }
 }
 toggler.addEventListener('click', handleToggle)
+
+certificates.forEach(function(button){ //получаем контейнет в котором хранятся кнопки и картинки
+    button.addEventListener('click', function(){ //вешаем лисенер на каждуый контейнер
+        const img = button.querySelector('.educ__cert-img') //при каждом клике отбираем картинку
+        const btn = button.querySelector('.educ-item-certif') //саму кнопку
+        btn.addEventListener('click',toggleTwoClasses(img, 'educ__cert-img--is-visible', 'educ__cert-img--is-hidden', 500)
+        )//при нажатии на кнопку срабатывает функция коллбэк
+    })
+})
+function toggleTwoClasses(elem, first, second, timeOfAnimation){
+    console.log(second) //в функции 4 аргумента - класс (когда видно), класс (когда не видно), время анимации
+    if(!elem.classList.contains(first)){ //проверяем есть ли класс, который открывает сертификат
+        elem.classList.add(first) //если нет, то добавляем класс, чтобы открыть сертификат
+        elem.classList.remove(second) // и параллельно убираем класс, который закрывает
+    }else{
+        elem.classList.add(second)
+        window.setTimeout(function(){
+            elem.classList.remove(first)
+        },timeOfAnimation)
+    }
+}
+
 
 // toggler.addEventListener('click', function(){
 //     bodyCl.classList.toggle('light-mode')
